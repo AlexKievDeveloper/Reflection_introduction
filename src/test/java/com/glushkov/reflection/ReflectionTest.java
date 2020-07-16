@@ -3,12 +3,14 @@ package com.glushkov.reflection;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ReflectionTest extends AdditionalClassForRedirectingOutputStream {
+public class ReflectionTest {
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
     @Test
     public void getObjectFromClass() {
@@ -96,21 +98,17 @@ public class ReflectionTest extends AdditionalClassForRedirectingOutputStream {
     public void changeAllPrivateFieldsValuesToNull() {
         //prepare
         EntityWithPrivateFields entityWithPrivateFields = new EntityWithPrivateFields(50, "Nikola");
-        int expectedAge = 0;
 
         //when
         Reflection.changeAllPrivateFieldsValuesToNull(entityWithPrivateFields);
-        int actualAge = entityWithPrivateFields.getAge();
-        String actualName = entityWithPrivateFields.getName();
 
         //then
-        assertEquals(expectedAge, actualAge);
-        assertEquals(null, actualName);
+        assertEquals(0, entityWithPrivateFields.getAge());
+        assertEquals(null, entityWithPrivateFields.getName());
     }
 
     @Test
     public void getDefaultValue() {
-
         //when
         char actualChar = Reflection.getDefaultValue(char.class);
         double actualDouble = Reflection.getDefaultValue(double.class);

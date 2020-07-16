@@ -9,23 +9,24 @@ public class AnnotationsMethodsTest {
 
     @Test
     public void injectAnnotation() {
+        //prepare
         EntityWithAnnotatedFieldsAndMethods entity = new EntityWithAnnotatedFieldsAndMethods();
         assertEquals(0, entity.getCount());
-
+        //when
         AnnotationsMethods.injectAnnotation(entity);
-
+        //then
         assertEquals(100, entity.getCount());
     }
 
     @Test
     public void fillInTheFields() {
+        //prepare
         EntityWithAnnotatedFieldsAndMethods entity = new EntityWithAnnotatedFieldsAndMethods();
-
         assertEquals(10, entity.getCost());
         assertNull(entity.getArrayList());
-
+        //when
         AnnotationsMethods.fillInTheFields(entity);
-
+        //then
         assertEquals(0, entity.getCost());
         assertNotNull(entity.getArrayList());
     }
