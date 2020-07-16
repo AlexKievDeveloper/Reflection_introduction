@@ -14,7 +14,7 @@ public class AnnotationsMethods {
             for (Method method : methods) {
                 Run annotation = method.getAnnotation(Run.class);
                 if (annotation != null) {
-                    if (method.toString().contains("()")) {
+                    if (method.getParameterCount() == 0) {
                         method.setAccessible(true);
                         method.invoke(value);
                     }
