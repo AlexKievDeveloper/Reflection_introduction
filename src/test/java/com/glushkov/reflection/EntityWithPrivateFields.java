@@ -1,11 +1,11 @@
-package com.glushkov;
+package com.glushkov.reflection;
 
-public class PersonForTest {
+public class EntityWithPrivateFields {
 
     private final int age;
     private final String name;
 
-    public PersonForTest(int age, String name) {
+    public EntityWithPrivateFields(int age, String name) {
         this.age = age;
         this.name = name;
     }
